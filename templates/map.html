@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Map{% endblock %}
+
+{% block content %}
+
+{% include "common/header.html" %}
+
+<div class="mapWrapper">
+  <div id="openSearch">
+    <i class="icofont-search-2"></i>
+  </div>
+  <div class="searchArea">
+    <div id="closeSearch">
+      <i class="icofont-close-circled"></i>
+    </div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-3 my-2">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        <div class="col my-2">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Give</option>
+            <option value="1">Find</option>
+          </select>
+        </div>
+        <div class="col-md-3 my-2">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        <div class="col-md-3 my-2">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Default checkbox
+            </label>
+          </div>
+        </div>
+        <div class="col-12 d-md-none">
+          <button class="btn btn-success w-100">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="map" class="map">
+  </div>
+  <div class="resultArea">
+    <a class="resultCard" href="/details">
+      <div class="tag">Partner</div>
+      <h5>Argosy Book Store</h5>
+      <h6>116 E 59th St, New York, NY, USA</h6>
+    </a>
+    <a class="resultCard">
+      <h5>Argosy Book Store</h5>
+      <h6>116 E 59th St, New York, NY, USA</h6>
+    </a>
+    <a class="resultCard">
+      <h5>Argosy Book Store</h5>
+      <h6>116 E 59th St, New York, NY, USA</h6>
+    </a>
+    <a class="resultCard">
+      <h5>Argosy Book Store</h5>
+      <h6>116 E 59th St, New York, NY, USA</h6>
+    </a>
+    <a class="resultCard">
+      <h5>Argosy Book Store</h5>
+      <h6>116 E 59th St, New York, NY, USA</h6>
+    </a>
+  </div>
+</div>
+
+
+{% endblock %}

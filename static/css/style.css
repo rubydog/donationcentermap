@@ -1,0 +1,134 @@
+body{
+  color: #333;
+}
+a{
+  text-decoration: none;
+  color: #1a8d44;
+}
+.navbar{
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+.mapWrapper{
+  position: relative;
+  height: calc(100vh - 56px);
+}
+.map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.searchArea {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+  padding: 30px 0;
+}
+.resultArea {
+  position: absolute;
+  top: 98px;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.8);
+  overflow: auto;
+  z-index: 1;
+}
+.resultCard{
+  padding: 15px;
+  border-left: 0px solid #1a8d44;
+  transition: all 0.3s ease-in-out;
+  background-color: transparent;
+  box-shadow: none;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  display: block;
+}
+.resultCard:hover{
+  border-left: 5px solid #1a8d44;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.tag{
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a8d44;
+  margin-bottom: 5px;
+}
+.resultCard h5{
+  font-size: 1rem;
+  color: #333;
+  transition: all 0.3s ease-in-out;
+}
+.resultCard:hover h5{
+  color: #1a8d44;
+}
+.resultCard h6{
+  font-weight: normal;
+  color: #999;
+}
+.location{
+  background-color: #eee;
+  height: 300px;
+  margin-bottom: 15px;
+}
+#closeSearch{
+  position: absolute;
+  right: 15px;
+  top: 0;
+  font-size: 24px;
+  color: #e91e63;
+  display: none;
+}
+#openSearch{
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  color: #1a8d44;
+  background: #fff;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 1;
+  display: none;
+}
+@media only screen and (max-width: 767px) {
+  #openSearch{
+    display: block;
+  }
+  .map{
+    bottom: auto;
+    height: 40vh;
+  }
+  .searchArea{
+    bottom: 0;
+    top: -50;
+    background-color: #fff;
+    z-index: 2;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  .searchArea.show{
+    visibility: visible;
+    opacity: 1;
+    top: 0;
+  }
+  #closeSearch{
+    display: block;
+  }
+  .resultArea{
+    top:40vh;
+    left: 0;
+    right: 0;
+    width: auto;
+  }
+}
