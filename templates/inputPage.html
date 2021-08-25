@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+
+{% block title %}Map{% endblock %}
+
+{% block content %}
+
+{% include "common/header.html" %}
+<div class="container my-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-6 md-offset-3">
+            <h1>Add Center</h1>
+            <form>
+                <div class="mb-3">
+                    <label for="centerName" class="form-label">Center Name</label>
+                    <input type="text" class="form-control" id="centerName">
+                </div>
+                <div class="mb-3">
+                    <label for="about" class="form-label">About</label>
+                    <textarea id="about" class="form-control"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="website" class="form-label">Website</label>
+                    <input type="text" class="form-control" id="website">
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="tel" class="form-control" id="phone">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <textarea id="address" class="form-control"></textarea>
+                </div>
+                <h5>Hours</h5>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox" value=""
+                            aria-label="Checkbox for following text input">
+                    </div>
+                    <label class="input-group-text" for="inputGroupSelect01">Mon</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Opening Time...</option>
+                        <option value="1">12AM</option>
+                        <option value="2">11AM</option>
+                        <option value="3">10AM</option>
+                    </select>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Closing Time...</option>
+                        <option value="1">12AM</option>
+                        <option value="2">11AM</option>
+                        <option value="3">10AM</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox" value=""
+                            aria-label="Checkbox for following text input">
+                    </div>
+                    <label class="input-group-text" for="inputGroupSelect01">Tue</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Opening Time...</option>
+                        <option value="1">12AM</option>
+                        <option value="2">11AM</option>
+                        <option value="3">10AM</option>
+                    </select>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Closing Time...</option>
+                        <option value="1">12AM</option>
+                        <option value="2">11AM</option>
+                        <option value="3">10AM</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox" value=""
+                            aria-label="Checkbox for following text input">
+                    </div>
+                    <label class="input-group-text" for="inputGroupSelect01">Wed</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Opening Time...</option>
+                        <option value="1">12AM</option>
+                        <option value="2">11AM</option>
+                        <option value="3">10AM</option>
+                    </select>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Closing Time...</option>
+                        <option value="1">12AM</option>
+                        <option value="2">11AM</option>
+                        <option value="3">10AM</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox" value=""
+                            aria-label="Checkbox for following text input">
+                    </div>
+                    <label class="input-group-text" for="inputGroupSelect01">Thu</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Opening Time...</option>
+                        <option value="1">12AM</option>
+                        <option value="2">11AM</option>
+                        <option value="3">10AM</option>
+                    </select>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Closing Time...</option>
+                        <option value="1">12AM</option>
+                        <option value="2">11AM</option>
+                        <option value="3">10AM</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox" value=""
+                            aria-label="Checkbox for following text input">
+                    </div>
+                    <label class="input-group-text" for="inputGroupSelect01">Fri</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Opening Time...</option>
+                        <option value="1">12AM</option>
+                        <option value="2">11AM</option>
+                        <option value="3">10AM</option>
+                    </select>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Closing Time...</option>
+                        <option value="1">12AM</option>
+                        <option value="2">11AM</option>
+                        <option value="3">10AM</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox" value=""
+                            aria-label="Checkbox for following text input">
+                    </div>
+                    <label class="input-group-text" for="inputGroupSelect01">Sat</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Opening Time...</option>
+                        <option value="1">12AM</option>
+                        <option value="2">11AM</option>
+                        <option value="3">10AM</option>
+                    </select>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Closing Time...</option>
+                        <option value="1">12AM</option>
+                        <option value="2">11AM</option>
+                        <option value="3">10AM</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox" value=""
+                            aria-label="Checkbox for following text input">
+                    </div>
+                    <label class="input-group-text" for="inputGroupSelect01">Sun</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Opening Time...</option>
+                        <option value="1">12AM</option>
+                        <option value="2">11AM</option>
+                        <option value="3">10AM</option>
+                    </select>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Closing Time...</option>
+                        <option value="1">12AM</option>
+                        <option value="2">11AM</option>
+                        <option value="3">10AM</option>
+                    </select>
+                </div>
+                <h5>You Can Donate</h5>
+                <div class="mb-3 form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Clothing/Personal Accessories</label>
+                </div>
+                <div class="mb-3 form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Footwear</label>
+                </div>
+                <h5>You Can Find</h5>
+                <div class="mb-3 form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Clothing/Personal Accessories</label>
+                </div>
+                <div class="mb-3 form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Footwear</label>
+                </div>
+                <div class="mb-3">
+                    <label for="information" class="form-label">Additional Material Information
+                    </label>
+                    <textarea id="information" class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
