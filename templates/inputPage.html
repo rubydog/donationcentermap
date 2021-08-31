@@ -7,7 +7,7 @@
 {% include "common/header.html" %}
 <div class="container my-5">
     <div class="row justify-content-md-center">
-        <div class="col-md-6 md-offset-3">
+        <div class="col-md-8 md-offset-2">
             <h1>Add Center</h1>
             <form>
                 <div class="mb-3">
@@ -34,8 +34,69 @@
                     <label for="address" class="form-label">Address</label>
                     <textarea id="address" class="form-control"></textarea>
                 </div>
+                
                 <h5>Hours</h5>
-                <div class="input-group mb-3">
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect01">From</label>
+                                <select class="form-select">
+                                    <option selected value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
+                                    <option value="Sunday">Sunday</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect01">To</label>
+                                <select class="form-select">
+                                    <option selected value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
+                                    <option value="Sunday">Sunday</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-3">
+                                <label class="input-group-text" for="inputGroupSelect01">Open</label>
+                                <select class="form-select hr">
+                                </select>
+                                <select class="form-select min">
+                                </select>
+                                <select class="form-select">
+                                    <option selected>AM</option>
+                                    <option>PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group input-group-sm mb-3">
+                                <label class="input-group-text" for="inputGroupSelect01">Close</label>
+                                <select class="form-select hr">
+                                </select>
+                                <select class="form-select min">
+                                </select>
+                                <select class="form-select">
+                                    <option>AM</option>
+                                    <option selected>PM</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="input-group mb-3">
                     <div class="input-group-text">
                         <input class="form-check-input mt-0" type="checkbox" value=""
                             aria-label="Checkbox for following text input">
@@ -137,10 +198,30 @@
                     </div>
                     <label class="input-group-text" for="inputGroupSelect01">Sat</label>
                     <select class="form-select" id="inputGroupSelect01">
-                        <option selected>Opening Time...</option>
-                        <option value="1">12AM</option>
-                        <option value="2">11AM</option>
-                        <option value="3">10AM</option>
+                        <option value="12:00AM">12:00 AM</option>
+                        <option value="01:00AM">01:00 AM</option>
+                        <option value="02:00AM">02:00 AM</option>
+                        <option value="03:00AM">03:00 AM</option>
+                        <option value="04:00AM">04:00 AM</option>
+                        <option value="05:00AM">05:00 AM</option>
+                        <option value="06:00AM">06:00 AM</option>
+                        <option value="07:00AM">07:00 AM</option>
+                        <option value="08:00AM">08:00 AM</option>
+                        <option value="09:00AM">09:00 AM</option>
+                        <option value="10:00AM">10:00 AM</option>
+                        <option value="11:00AM">11:00 AM</option>
+                        <option value="12:00PM">12:00 PM</option>
+                        <option value="01:00PM">01:00 PM</option>
+                        <option value="02:00PM">02:00 PM</option>
+                        <option value="03:00PM">03:00 PM</option>
+                        <option value="04:00PM">04:00 PM</option>
+                        <option value="05:00PM">05:00 PM</option>
+                        <option value="06:00PM">06:00 PM</option>
+                        <option value="07:00PM">07:00 PM</option>
+                        <option value="08:00PM">08:00 PM</option>
+                        <option value="09:00PM">09:00 PM</option>
+                        <option value="10:00PM">10:00 PM</option>
+                        <option value="11:00PM">11:00 PM</option>
                     </select>
                     <select class="form-select" id="inputGroupSelect01">
                         <option selected>Closing Time...</option>
@@ -167,7 +248,7 @@
                         <option value="2">11AM</option>
                         <option value="3">10AM</option>
                     </select>
-                </div>
+                </div> -->
                 <h5>You Can Donate</h5>
                 <div class="mb-3 form-check form-check-inline">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -190,6 +271,14 @@
                     <label for="information" class="form-label">Additional Material Information
                     </label>
                     <textarea id="information" class="form-control"></textarea>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="partner">
+                    <label class="form-check-label" for="partner">Partner</label>
+                </div>
+                <div class="mb-3 form-check ">
+                    <input type="checkbox" class="form-check-input" id="pickup">
+                    <label class="form-check-label" for="pickup">Pickup</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

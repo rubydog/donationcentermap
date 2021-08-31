@@ -88,10 +88,10 @@ WSGI_APPLICATION = 'donationCenter.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'donation_center',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
+        'PASSWORD': 'donation@$2',
+        'HOST': '52.28.51.30',
         'PORT': '5432',
     }
 }
