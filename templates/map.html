@@ -55,27 +55,13 @@
   <div id="map" class="map">
   </div>
   <div class="resultArea">
-    <a class="resultCard" href="/details">
+    {% for center in centers %}
+    <a class="resultCard" href="{% url 'detailsPage' center.slug %}">
       <div class="tag">Partner</div>
-      <h5>Argosy Book Store</h5>
-      <h6>116 E 59th St, New York, NY, USA</h6>
+      <h5>{{center.name}}</h5>
+      <h6>{{center.address}}</h6>
     </a>
-    <a class="resultCard">
-      <h5>Argosy Book Store</h5>
-      <h6>116 E 59th St, New York, NY, USA</h6>
-    </a>
-    <a class="resultCard">
-      <h5>Argosy Book Store</h5>
-      <h6>116 E 59th St, New York, NY, USA</h6>
-    </a>
-    <a class="resultCard">
-      <h5>Argosy Book Store</h5>
-      <h6>116 E 59th St, New York, NY, USA</h6>
-    </a>
-    <a class="resultCard">
-      <h5>Argosy Book Store</h5>
-      <h6>116 E 59th St, New York, NY, USA</h6>
-    </a>
+    {% endfor %}
   </div>
 </div>
 
