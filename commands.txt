@@ -1,0 +1,4 @@
+from dcApp.models import Center
+
+center = Center.objects.get(slug = slug)
+

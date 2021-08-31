@@ -54,12 +54,12 @@ BUSINESS_HOURS = {
         "closing": "17:00"
     },
     "saturday":{
-        'available': True,
+        'available': False,
         "opening" : "10:00",
         "closing": "17:00"
     },
     "sunday":{
-        'available': True,
+        'available': False,
         "opening" : "10:00",
         "closing": "17:00"
     }

@@ -12,13 +12,18 @@ def index(request):
     return render(request, 'map.html', context)
     
 def detailsPage(request, slug):
-    center = Center.objects.filter(slug = slug)
-    return render(request, 'detailsPage.html')
-    # center_json = serialize("json", center)
-    # # print(projects)
+    center = Center.objects.get(slug = slug)
+    
+    print(type(center.hours['monday']['available']))
 
-    # return HttpResponse(center_json, content_type="application/json")
+    for x in center.hours:
+        print(x,center.hours[x])
 
+    context = {
+        "center": center, 
+    }
+    return render(request, 'detailsPage.html', context)
+    
 
 def inputCenterPage(request):
     return render(request, 'inputPage.html')
