@@ -72,13 +72,13 @@
                         <div class="col-lg-6">
                             <div class="input-group input-group-sm mb-3">
                                 <label class="input-group-text" for="inputGroupSelect01">Open</label>
-                            <input type="time" name="hours_opening" class="form-select">
+                            <input type="time" name="hours_opening" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="input-group input-group-sm mb-3">
                                 <label class="input-group-text" for="inputGroupSelect01">Close</label>
-                                <input type="time" name="hours_closing"  class="form-select">
+                                <input type="time" name="hours_closing"  class="form-control">
                                 <!-- <select class="form-select hr">
                                 </select>
                                 <select class="form-select min">
@@ -281,6 +281,24 @@
                 <div class="mb-3 form-check ">
                     <input type="checkbox" class="form-check-input" id="pickup" name="pickup" value="1">
                     <label class="form-check-label" for="pickup">Pickup</label>
+                </div>
+                <h5>Select Location</h5>
+                <div id="location" style="height: 300px;" class="mb-3">
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Long.</label>
+                        <input type="text" name="long" id="long" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Lat.</label>
+                            <input type="text" name="lat" id="lat"  class="form-control">
+                        </div>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

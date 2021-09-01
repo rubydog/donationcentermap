@@ -100,6 +100,12 @@ a{
   z-index: 1;
   display: none;
 }
+.ol-geocoder .gcd-txt-control{
+  height: 3.375em;
+}
+.ol-geocoder ul.gcd-txt-result{
+  top: 3.575em;
+}
 @media only screen and (max-width: 767px) {
   #openSearch{
     display: block;
