@@ -9,30 +9,31 @@
     <div class="row justify-content-md-center">
         <div class="col-md-8 md-offset-2">
             <h1>Add Center</h1>
-            <form>
+            <form action="" method="post">
+                {% csrf_token %}
                 <div class="mb-3">
                     <label for="centerName" class="form-label">Center Name</label>
-                    <input type="text" class="form-control" id="centerName">
+                    <input type="text" class="form-control" id="centerName" name="name">
                 </div>
                 <div class="mb-3">
                     <label for="about" class="form-label">About</label>
-                    <textarea id="about" class="form-control"></textarea>
+                    <textarea id="about" class="form-control" name="about"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="website" class="form-label">Website</label>
-                    <input type="text" class="form-control" id="website">
+                    <input type="text" class="form-control" id="website" name="website">
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">Phone</label>
-                    <input type="tel" class="form-control" id="phone">
+                    <input type="tel" class="form-control" id="phone" name="phone">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email">
+                    <input type="email" class="form-control" id="email" name="email">
                 </div>
                 <div class="mb-3">
                     <label for="address" class="form-label">Address</label>
-                    <textarea id="address" class="form-control"></textarea>
+                    <textarea id="address" class="form-control" name="address"></textarea>
                 </div>
                 
                 <h5>Hours</h5>
@@ -41,7 +42,7 @@
                         <div class="col-lg-6">
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="inputGroupSelect01">From</label>
-                                <select class="form-select">
+                                <select class="form-select" name="hours_from">
                                     <option selected value="Monday">Monday</option>
                                     <option value="Tuesday">Tuesday</option>
                                     <option value="Wednesday">Wednesday</option>
@@ -55,7 +56,7 @@
                         <div class="col-lg-6">
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="inputGroupSelect01">To</label>
-                                <select class="form-select">
+                                <select class="form-select" name="hours_to">
                                     <option selected value="Monday">Monday</option>
                                     <option value="Tuesday">Tuesday</option>
                                     <option value="Wednesday">Wednesday</option>
@@ -71,27 +72,21 @@
                         <div class="col-lg-6">
                             <div class="input-group input-group-sm mb-3">
                                 <label class="input-group-text" for="inputGroupSelect01">Open</label>
-                                <select class="form-select hr">
-                                </select>
-                                <select class="form-select min">
-                                </select>
-                                <select class="form-select">
-                                    <option selected>AM</option>
-                                    <option>PM</option>
-                                </select>
+                            <input type="time" name="hours_opening" class="form-select">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="input-group input-group-sm mb-3">
                                 <label class="input-group-text" for="inputGroupSelect01">Close</label>
-                                <select class="form-select hr">
+                                <input type="time" name="hours_closing"  class="form-select">
+                                <!-- <select class="form-select hr">
                                 </select>
                                 <select class="form-select min">
                                 </select>
                                 <select class="form-select">
                                     <option>AM</option>
                                     <option selected>PM</option>
-                                </select>
+                                </select> -->
                             </div>
                         </div>
                     </div>
@@ -250,34 +245,41 @@
                     </select>
                 </div> -->
                 <h5>You Can Donate</h5>
+                {% for tag in tags %}
                 <div class="mb-3 form-check form-check-inline">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Clothing/Personal Accessories</label>
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="can_donate" value="{{tag.id}}">
+                    <label class="form-check-label" for="exampleCheck1">{{tag.name}}</label>
                 </div>
-                <div class="mb-3 form-check form-check-inline">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Footwear</label>
-                </div>
+                {% endfor%}
+
                 <h5>You Can Find</h5>
+                {% for tag in tags %}
                 <div class="mb-3 form-check form-check-inline">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Clothing/Personal Accessories</label>
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="can_find" value="{{tag.id}}">
+                    <label class="form-check-label" for="exampleCheck1">{{tag.name}}</label>
                 </div>
-                <div class="mb-3 form-check form-check-inline">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Footwear</label>
-                </div>
+                {% endfor%}
+                
+
+                <!-- <h5>You Can Find</h5>
+                  <div class="form-group mb-3">
+                    <select multiple class="form-control" id="canfind" name="can_find">
+                        {% for tag in tags %}
+                        <option value="{{tag.id}}" data-badge="">{{tag.name}}</option>
+                        {% endfor%}
+                    </select>
+                  </div> -->
                 <div class="mb-3">
                     <label for="information" class="form-label">Additional Material Information
                     </label>
-                    <textarea id="information" class="form-control"></textarea>
+                    <textarea id="information" class="form-control" name="additional_material_information"></textarea>
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="partner">
-                    <label class="form-check-label" for="partner">Partner</label>
+                    <input type="checkbox" class="form-check-input" id="partner" name="partner"  value="1">
+                    <label class="form-check-label" for="partner" >Partner</label>
                 </div>
                 <div class="mb-3 form-check ">
-                    <input type="checkbox" class="form-check-input" id="pickup">
+                    <input type="checkbox" class="form-check-input" id="pickup" name="pickup" value="1">
                     <label class="form-check-label" for="pickup">Pickup</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>

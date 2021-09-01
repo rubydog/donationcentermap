@@ -28,16 +28,10 @@ class ThroughFindTag(GenericUUIDTaggedItemBase, TaggedItemBase):
 
 
 BUSINESS_HOURS = {
-    "from":{
-        'day': 'Monday',
-        "opening" : "10:00 AM",
-        "closing": "05:00 PM"
-    },
-    "to":{
-        'day': 'Saturday',
-        "opening" : "10:00 AM",
-        "closing": "05:00 PM"
-    },
+    "from":'Monday',
+    "to":'Friday',
+    "opening" : "10:00",
+    "closing": "17:00"
 }
 
 def json_hours():
@@ -48,7 +42,7 @@ def json_hours():
 class Center(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
-    name = models.CharField(max_length=250, unique=True)
+    name = models.CharField(max_length=250, unique=True, null=False)
     slug = models.SlugField(max_length=250, null=True, blank=True, editable=False)
     about = models.TextField(blank=True, null=True)
     website = models.URLField(blank=True, null=True)
@@ -66,7 +60,10 @@ class Center(models.Model):
 
     additional_material_information = models.TextField(blank=True, null=True)
     hours = models.JSONField(default=json_hours, null=True,blank=True)
-
+    hours_from = models.CharField(max_length=13, null=True, blank=True)
+    hours_to = models.CharField(max_length=13, null=True, blank=True)
+    hours_opening = models.CharField(max_length=13, null=True, blank=True)
+    hours_closing = models.CharField(max_length=13, null=True, blank=True)
 
     # Coordinate
     lon = models.FloatField(blank=True, null=True, verbose_name='Longitude')
