@@ -22,60 +22,12 @@
             <p>{{center.address}}</p>
             <h6 class="fw-bold">Hours</h6>
             <div class="row">
-                <div class="col-3 fw-bold text-muted">Mon</div>
-                {% if center.hours.monday.available %}
-                <div class="col-9">{{center.hours.monday.opening}} - {{center.hours.monday.closing}}</div>
-                {% else %}
-                <div class="col-9">closed</div>
-                {% endif %}                   
+                <div class="col-3 fw-bold text-muted">{{center.hours.from.day}}</div>
+                <div class="col-9">{{center.hours.from.opening}} - {{center.hours.from.closing}}</div>                
             </div>
             <div class="row">
-                <div class="col-3 fw-bold text-muted">Tue</div>
-                {% if center.hours.tuesday.available %}
-                <div class="col-9">{{center.hours.tuesday.opening}} - {{center.hours.tuesday.closing}}</div>
-                {% else %}
-                <div class="col-9">closed</div>
-                {% endif %} 
-            </div>
-            <div class="row">
-                <div class="col-3 fw-bold text-muted">Wed</div>
-                {% if center.hours.wednesday.available %}
-                <div class="col-9">{{center.hours.wednesday.opening}} - {{center.hours.wednesday.closing}}</div>
-                {% else %}
-                <div class="col-9">closed</div>
-                {% endif %} 
-            </div>
-            <div class="row">
-                <div class="col-3 fw-bold text-muted">Thu</div>
-                {% if center.hours.thursday.available %}
-                <div class="col-9">{{center.hours.thursday.opening}} - {{center.hours.thursday.closing}}</div>
-                {% else %}
-                <div class="col-9">closed</div>
-                {% endif %} 
-            </div>
-            <div class="row">
-                <div class="col-3 fw-bold text-muted">Fri</div>
-                {% if center.hours.friday.available %}
-                <div class="col-9">{{center.hours.friday.opening}} - {{center.hours.friday.closing}}</div>
-                {% else %}
-                <div class="col-9">closed</div>
-                {% endif %} 
-            </div>
-            <div class="row">
-                <div class="col-3 fw-bold text-muted">Sat</div>
-                {% if center.hours.saturday.available %}
-                <div class="col-9">{{center.hours.saturday.opening}} - {{center.hours.saturday.closing}}</div>
-                {% else %}
-                <div class="col-9">closed</div>
-                {% endif %} 
-            </div>
-            <div class="row">
-                <div class="col-3 fw-bold text-muted">Sun</div>
-                {% if center.hours.sunday.available %}
-                <div class="col-9">{{center.hours.sunday.opening}} - {{center.hours.sunday.closing}}</div>
-                {% else %}
-                <div class="col-9">closed</div>
-                {% endif %} 
+                <div class="col-3 fw-bold text-muted">{{center.hours.to.day}}</div>
+                <div class="col-9">{{center.hours.to.opening}} - {{center.hours.to.closing}}</div>    
             </div>
         </div>
         <div class="col-md-8">

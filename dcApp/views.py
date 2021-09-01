@@ -13,12 +13,6 @@ def index(request):
     
 def detailsPage(request, slug):
     center = Center.objects.get(slug = slug)
-    
-    print(type(center.hours['monday']['available']))
-
-    for x in center.hours:
-        print(x,center.hours[x])
-
     context = {
         "center": center, 
     }

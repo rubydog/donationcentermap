@@ -28,41 +28,16 @@ class ThroughFindTag(GenericUUIDTaggedItemBase, TaggedItemBase):
 
 
 BUSINESS_HOURS = {
-    "monday":{
-        'available': True,
-        "opening" : "10:00",
-        "closing": "17:00"
+    "from":{
+        'day': 'Monday',
+        "opening" : "10:00 AM",
+        "closing": "05:00 PM"
     },
-    "tuesday":{
-        'available': True,
-        "opening" : "10:00",
-        "closing": "17:00"
+    "to":{
+        'day': 'Saturday',
+        "opening" : "10:00 AM",
+        "closing": "05:00 PM"
     },
-    "wednesday":{
-        'available': True,
-        "opening" : "10:00",
-        "closing": "17:00"
-    },
-    "thursday":{
-        'available': True,
-        "opening" : "10:00",
-        "closing": "17:00"
-    },
-    "friday":{
-        'available': True,
-        "opening" : "10:00",
-        "closing": "17:00"
-    },
-    "saturday":{
-        'available': False,
-        "opening" : "10:00",
-        "closing": "17:00"
-    },
-    "sunday":{
-        'available': False,
-        "opening" : "10:00",
-        "closing": "17:00"
-    }
 }
 
 def json_hours():
