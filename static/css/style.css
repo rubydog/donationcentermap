@@ -106,6 +106,15 @@ a{
 .ol-geocoder ul.gcd-txt-result{
   top: 3.575em;
 }
+.multiselect-dropdown{
+  padding: 3px 5px!important;
+  width: 100%!important;
+}
+.multiselect-dropdown-list div {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
 @media only screen and (max-width: 767px) {
   #openSearch{
     display: block;
