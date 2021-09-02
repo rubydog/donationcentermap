@@ -63,11 +63,14 @@ const stroke = new ol.style.Stroke({
 
 const styles = [
   new ol.style.Style({
-    image: new ol.style.RegularShape({
-      fill: fill,
-      stroke: stroke,
-      points: 7, // sides 3 = triangle
-      radius: 10,
+      image: new ol.style.Icon({
+      // anchor: [0.5, 0.5],
+      offset: [0, 0],
+      // the real size of your icon
+      size: [512, 512],
+      // the scale factor
+      scale: 0.07,
+      src: '/static/image/marker.png',
     }),
     fill: fill,
     stroke: stroke,
@@ -108,9 +111,14 @@ let datasets = axios
 var form_vectorLayer = new ol.layer.Vector({
   source: new ol.source.Vector(),
   style: new ol.style.Style({
-    image: new ol.style.Circle({
-      radius: 2,
-      fill: new ol.style.Fill({ color: "red" }),
+    image: new ol.style.Icon({
+      // anchor: [0.5, 0.5],
+      offset: [0, 0],
+      // the real size of your icon
+      size: [512, 512],
+      // the scale factor
+      scale: 0.07,
+      src: '/static/image/pin.png',
     }),
   }),
 });
@@ -149,8 +157,11 @@ mapLocation.on("click", function (evt) {
   form_vectorLayer.getSource().clear();
   form_vectorLayer.getSource().addFeature(location);
   var coord = evt.coordinate;
+  var coordDegrees = ol.proj.transform(evt.coordinate, "EPSG:3857", "EPSG:4326");
   document.getElementById("long").value = coord[0];
   document.getElementById("lat").value = coord[1];
+  document.getElementById("longD").innerText = coordDegrees[0];
+  document.getElementById("latD").innerText = coordDegrees[1];
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

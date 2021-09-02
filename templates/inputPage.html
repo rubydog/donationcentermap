@@ -274,20 +274,31 @@
                     <label class="form-check-label" for="pickup">Pickup</label>
                 </div>
                 <h5>Select Location</h5>
+                <p class="text-danger">( *Please select a location from the map below )</p>
                 <div id="location" style="height: 500px;" class="mb-3">
 
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
+                        <div class="input-group">
+                        <input type="text" name="lon" id="long" class="form-control" hidden>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <input type="text" name="lat" id="lat"  class="form-control" hidden>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
                         <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01">Long.</label>
-                        <input type="text" name="lon" id="long" class="form-control">
+                            <label for="information" class="form-label">Longitude: <span id="longD"></span></label>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01">Lat.</label>
-                            <input type="text" name="lat" id="lat"  class="form-control">
+                            <label for="information" class="form-label">Latitude: <span id="latD"></span></label>
                         </div>
                     </div>
                 </div>
