@@ -13,12 +13,6 @@ let map = new ol.Map({
     zoom: 7,
     // projection:"EPSG:3857"
   }),
-
-  controls: new ol.control.defaults().extend([
-    new ol.control.FullScreen({
-      source: "fullscreen", // for redering modalas and other elements.
-    }),
-  ]),
 });
 
 ///////////////////////////////////////////////////
@@ -121,7 +115,7 @@ var form_vectorLayer = new ol.layer.Vector({
   }),
 });
 
-var mapLocation = new ol.Map({
+let mapLocation = new ol.Map({
   target: "location",
   layers: [
     new ol.layer.Tile({
@@ -130,8 +124,9 @@ var mapLocation = new ol.Map({
     form_vectorLayer,
   ],
   view: new ol.View({
-    center: ol.proj.fromLonLat([13.35, 52.52]),
+    center: [1495167.0768482448, 6894375.396669268],
     zoom: 7,
+    // projection:"EPSG:3857"
   }),
 });
 
@@ -153,7 +148,7 @@ mapLocation.on("click", function (evt) {
   const location = new ol.Feature(new ol.geom.Point(evt.coordinate));
   form_vectorLayer.getSource().clear();
   form_vectorLayer.getSource().addFeature(location);
-  var coord = ol.proj.transform(evt.coordinate, "EPSG:3857", "EPSG:4326");
+  var coord = evt.coordinate;
   document.getElementById("long").value = coord[0];
   document.getElementById("lat").value = coord[1];
 });
