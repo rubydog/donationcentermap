@@ -246,7 +246,7 @@
                 </div> -->
                 <h5>You Can Donate</h5>
                 {% for tag in tags %}
-                <div class="mb-3 form-check form-check-inline">
+                <div class="form-check form-check-inline">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1" name="can_donate" value="{{tag.id}}">
                     <label class="form-check-label" for="exampleCheck1">{{tag.name}}</label>
                 </div>
@@ -254,22 +254,13 @@
 
                 <h5>You Can Find</h5>
                 {% for tag in tags %}
-                <div class="mb-3 form-check form-check-inline">
+                <div class="form-check form-check-inline">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1" name="can_find" value="{{tag.id}}">
                     <label class="form-check-label" for="exampleCheck1">{{tag.name}}</label>
                 </div>
                 {% endfor%}
-                
-
-                <!-- <h5>You Can Find</h5>
-                  <div class="form-group mb-3">
-                    <select multiple class="form-control" id="canfind" name="can_find">
-                        {% for tag in tags %}
-                        <option value="{{tag.id}}" data-badge="">{{tag.name}}</option>
-                        {% endfor%}
-                    </select>
-                  </div> -->
-                <div class="mb-3">
+            
+                <div class="my-3">
                     <label for="information" class="form-label">Additional Material Information
                     </label>
                     <textarea id="information" class="form-control" name="additional_material_information"></textarea>
@@ -290,7 +281,7 @@
                     <div class="col-lg-6">
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="inputGroupSelect01">Long.</label>
-                        <input type="text" name="long" id="long" class="form-control">
+                        <input type="text" name="lon" id="long" class="form-control">
                         </div>
                     </div>
                     <div class="col-lg-6">

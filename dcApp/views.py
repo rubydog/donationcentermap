@@ -47,16 +47,18 @@ def inputCenterPage(request):
         
         center.partner = (request.POST.get('partner') == '1')
         center.pickup = (request.POST.get('pickup')=='1')
+        center.lat = request.POST.get('lat')
+        center.lon = request.POST.get('lon')
+        center.save()
 
         can_donate_items = request.POST.getlist('can_donate')
         can_find_items = request.POST.getlist('can_find')
-
+        
         donate_objects = Tag.objects.filter(pk__in=can_donate_items)
-
         find_objects = Tag.objects.filter(pk__in=can_find_items)
         
-        # center.can_donate.set(donate_objects)
-        # center.can_find.add(find_objects)
+        center.can_donate.set(*donate_objects)
+        center.can_find.add(*find_objects)
 
         # # BUSINESS_HOURS
         # hours = BUSINESS_HOURS
@@ -67,8 +69,8 @@ def inputCenterPage(request):
         # hours['closing'] = request.POST.get('hours_closing')
 
         print(donate_objects)
-        print(find_objects)
-        # center.save()
+        print(can_donate_items)
+        
 
     context = {
         'tags': tags,
