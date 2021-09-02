@@ -28,7 +28,6 @@ def detailsPage(request, slug):
     }
     return render(request, 'detailsPage.html', context)
     
-
 def inputCenterPage(request):
     tags = Tag.objects.all()
     if request.method == 'POST':
@@ -76,3 +75,10 @@ def inputCenterPage(request):
         'tags': tags,
     }
     return render(request, 'inputPage.html', context)
+
+def api_centers(request):
+    all_centers = Center.objects.all()
+    centers = serialize("json", all_centers)
+    # print(centers)
+
+    return HttpResponse(centers, content_type="application/json")
