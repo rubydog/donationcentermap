@@ -11,9 +11,14 @@
 ### Note:
 1. Main Home page is in <b>templates/index.html</b>
 2. css and js files are in <b>satic</b> folder (js and css)
-3. Postgres - name: <code>donation_center</code>
+3. Postgres - <br>name: <code>donation_center</code><br>
+              user: <code>postgres</code><br>
+              pass: <code>donation@$2</code><br>
+
+4. <b>Change the base_url = 'localhost:8000' in map.js file during deployment</b>
 
 ## Tasks Complete
 1. Map Designed
 2. Add Center Form 
 3. Admin Panle Center
+4. Show map data on Main map
