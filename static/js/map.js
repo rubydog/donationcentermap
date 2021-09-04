@@ -82,7 +82,7 @@ let datasets = axios
     console.log(response.data)
     
     geojsonObject = GeoJSON.parse(response.data, {
-      Point: ["fields.lat", "fields.lon"],
+      Point: ["lat", "lon"],
     }); //https://github.com/caseycesari/geojson.js
 
     console.log(geojsonObject);
@@ -103,7 +103,39 @@ let datasets = axios
     console.log(error);
   });
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+// Filter
+function updateMap() {
+  let items = $('#items-dropdown').val();
+  let type = $('#type').val();
+  let pickuponly = $('#pickuponly').prop("checked");
+  
+  console.log(items,type,pickuponly);
+  // Filter
+  axios.get('/api/centers/filter',{
+    params:{
+      items: items,
+      type: type,
+      pickuponly: pickuponly,
+    }
+  }).then(function(response){
+    geojsonObject = GeoJSON.parse(response.data, {Point: ['lat', 'lon']}); //https://github.com/caseycesari/geojson.js
 
+    console.log(geojsonObject);
+
+    vectorSource = new ol.source.Vector({
+      features: new ol.format.GeoJSON().readFeatures(geojsonObject),
+    });
+    // Set the new source to layer
+    vectorLayer.setSource(vectorSource);
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+
+$('#filter_btn').on('click', function(evt){
+  updateMap();
+})
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Add Form map

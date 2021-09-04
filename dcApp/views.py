@@ -1,8 +1,9 @@
 from taggit.models import Tag
 from dcApp.models import Center
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.core.serializers import serialize
+from django.db.models import Q
 
 # Create your views here.
 BUSINESS_HOURS = {
@@ -15,9 +16,11 @@ BUSINESS_HOURS = {
 
 def index(request):
     centers = Center.objects.all()
+    items = Tag.objects.all().distinct()
 
     context = {
         "centers": centers, 
+        'items': items,
     }
     return render(request, 'map.html', context)
     
@@ -78,7 +81,20 @@ def inputCenterPage(request):
 
 def api_centers(request):
     all_centers = Center.objects.all()
-    centers = serialize("json", all_centers)
+    # centers = serialize("json", all_centers)
     # print(centers)
+    # return HttpResponse(centers, content_type="application/json")
+    return JsonResponse(list(all_centers.values()), safe=False)
 
-    return HttpResponse(centers, content_type="application/json")
+def filter_api_centers(request):
+    # Get All Ceneters 
+    all_centers = Center.objects.all()
+    print("Type:  ---", type(all_centers))
+    print("All Center")
+    center_items=request.GET.getlist('items[]')
+    center_type=request.GET.get('type')
+    pickuponly=request.GET.get('pickuponly')
+    
+    print(center_items,center_type,pickuponly)
+
+    return JsonResponse(list(all_centers.values()), safe=False)

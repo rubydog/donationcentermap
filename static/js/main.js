@@ -5,7 +5,7 @@ $('#closeSearch').click(function(){
     $('.searchArea').removeClass('show');
 });
 
-document.multiselect('findLocation');
+document.multiselect('items-dropdown');
 
 // let hrs = "";
 // let min = "";

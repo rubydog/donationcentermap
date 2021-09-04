@@ -16,29 +16,30 @@
     </div>
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-md-6 my-2">
-          <select  name="findLocation" id="findLocation" multiple multiselect-select-all="true" multiselect-search="true" multiselect-max-items="4">
-            <option value="1">Food</option>
-            <option value="2">Cloths</option>
-            <option value="3">Drinks</option>
+        <div class="col-md-3 my-2">
+          <select  name="items" id="items-dropdown" multiple multiselect-select-all="true" multiselect-search="true" multiselect-max-items="4">
+            {% for item in items %}
+            <option value="{{item.id}}">{{item.name}}</option>
+            {% endfor %}
           </select>
         </div>
         <div class="col-md-3 my-2">
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Give</option>
-            <option value="1">Find</option>
+          <select class="form-select" aria-label="Default select example" name="type" id="type">
+            <option value selected>Select</option>
+            <option value="Give">Give</option>
+            <option value="Find">Find</option>
           </select>
         </div>
         <div class="col-md-3 my-2">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <input class="form-check-input" type="checkbox" value="1" id="pickuponly" name="pickuponly">
             <label class="form-check-label" for="flexCheckDefault">
               Pickup Only
             </label>
           </div>
         </div>
-        <div class="col-12 d-md-none">
-          <button class="btn btn-success w-100">Search</button>
+        <div class="col-md-3 w-md-100">
+          <button class="btn btn-success" id="filter_btn">Search</button>
         </div>
       </div>
     </div>

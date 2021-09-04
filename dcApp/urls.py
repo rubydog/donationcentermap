@@ -8,4 +8,5 @@ urlpatterns = [
     
     # Api
     path('api/centers/', views.api_centers, name='api_centers'),
+    path('api/centers/filter/', views.filter_api_centers, name='filter_api_centers'),
 ]
