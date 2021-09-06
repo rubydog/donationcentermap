@@ -96,7 +96,7 @@ def filter_api_centers(request):
     pickuponly=request.GET.get('pickuponly')
     partneronly=request.GET.get('partneronly')
     
-    # Items centers   
+    # # Items centers   
     if(len(center_items) > 0):
         items = Tag.objects.filter(id__in=center_items)
         all_centers = Center.objects.filter(Q(can_donate__id__in=center_items) | Q(can_find__id__in=center_items)).distinct()
@@ -125,7 +125,7 @@ def filter_api_centers(request):
         all_centers = all_centers.filter(partner=True).distinct()
         print('partneronly')
 
-    # print(center_items,center_type,pickuponly)
+    print(center_items,center_type,pickuponly)
 
     return JsonResponse(list(all_centers.values()), safe=False)
 

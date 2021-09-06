@@ -59,7 +59,6 @@ class Center(models.Model):
     can_find = TaggableManager(blank=True, through=ThroughFindTag, related_name='find_centers', verbose_name='Can Find')
 
     additional_material_information = models.TextField(blank=True, null=True)
-    hours = models.JSONField(default=json_hours, null=True,blank=True)
     hours_from = models.CharField(max_length=13, null=True, blank=True)
     hours_to = models.CharField(max_length=13, null=True, blank=True)
     hours_opening = models.CharField(max_length=13, null=True, blank=True)
