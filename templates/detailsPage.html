@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <div class="col-md-4 mb-3">
-            <div class="location"></div>
+            <div class="location" id="center_location"></div>
             <h6 class="fw-bold">Address</h6>
             <p>{{center.address}}</p>
             <h6 class="fw-bold">Hours</h6>
@@ -61,4 +61,45 @@
     </div>
 </div>
 
+<script>
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+// Details Page
+const iconFeature = new ol.Feature({
+  geometry: new ol.geom.Point([{{center.lon}}, {{center.lat}}]),
+  name: 'Somewhere near Nottingham',
+});
+
+
+let centerLocation = new ol.Map({
+  target: "center_location",
+  layers: [
+    new ol.layer.Tile({
+      source: new ol.source.OSM(),
+    }),
+    new ol.layer.Vector({
+      source: new ol.source.Vector({
+        features: [iconFeature]
+      }),
+      style: new ol.style.Style({
+        image: new ol.style.Icon({
+          anchor: [0.5, 46],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'pixels',
+          // the real size of your icon
+            size: [512, 512],
+            // the scale factor
+            scale: 0.07,
+          src: '/static/image/marker.png'
+        })
+      })
+    })
+  ],
+  view: new ol.View({
+    center: [{{center.lon}}, {{center.lat}}],
+    zoom: 6,
+    // projection:"EPSG:3857"
+  }),
+});
+
+</script>
 {% endblock %}

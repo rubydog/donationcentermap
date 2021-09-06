@@ -48,7 +48,7 @@
   </div>
   <div class="resultArea" id="resultArea">
     {% for center in centers %}
-    <a class="resultCard" href="{% url 'detailsPage' center.slug %}">
+    <a class="resultCard" href="{% url 'detailsPage' center.slug %}" id="{{center.id}}">
       <div class="tag">Partner</div>
       <h5>{{center.name}}</h5>
       <h6>{{center.address}}</h6>

@@ -16,23 +16,50 @@ let map = new ol.Map({
 });
 
 ///////////////////////////////////////////////////
-//  Onclick event 
-map.on('click', function (evt) {
-
-  console.log(evt.coordinate);
-
+//  Onclick event
+let selected = null;
+map.on("click", function (evt) {
+  // console.log(evt.coordinate);
   var features = [];
-  map.forEachFeatureAtPixel(evt.pixel,
-      function(feature, layer) {
-          return features.push(feature);
-      });
-      
-      // Top most feature
-      let feature = features[0];
-      if(features[0]){
-        console.log(feature.get('fields'));
-      }
+  map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+    return features.push(feature);
+  });
+
+  // Top most feature
+  let feature = features[0];
+  if (feature) {
+    // Undo the previous feature
+    if (selected !== null) {
+      selected.setStyle(undefined);
+      selected = null;
+    }
+    //  High Light Feature
+    feature.setStyle(highLightStyle);
+    selected = feature;
+
+    // HIGH LIGHT THE CARD Here.............
+    console.log("Feature ID: ");
+    console.log(feature.get("id"));
+  }
 });
+
+// Result Card Event Listners
+function resultCardOnHoverEvent() {
+  // Result Hover
+  resultsCards = document.querySelectorAll("#resultArea > a");
+
+  // Add hover event Listernerner
+  resultsCards.forEach(function (e) {
+    e.addEventListener("mouseenter", function () {
+      console.log("Feature ID: ");
+      let selectedfeatureID = this.id;
+      console.log(selectedfeatureID);
+
+      // High Light Points
+    });
+  });
+}
+resultCardOnHoverEvent();
 
 ///////////////////////////////////////////////////////
 // Load data to map
@@ -40,47 +67,37 @@ let vectorSource;
 let vectorLayer;
 let geojsonObject;
 
-// Vector Style
-
-// Polygon Style
-const fill = new ol.style.Fill({
-  color: "rgba(0,255,0,0.4)",
-});
-
-//  Line Style
-const stroke = new ol.style.Stroke({
-  color: "#333",
-  width: 1.25,
-});
-
-/**
- * ol.style.Style({
- * image -> for points
- * stroke -> for lines
- * fill -> for ploygons
- * })
- */
-
 const styles = [
   new ol.style.Style({
-      image: new ol.style.Icon({
+    image: new ol.style.Icon({
       // anchor: [0.5, 0.5],
       offset: [0, 0],
       // the real size of your icon
       size: [512, 512],
       // the scale factor
       scale: 0.07,
-      src: '/static/image/marker.png',
+      src: "/static/image/marker.png",
     }),
-    fill: fill,
-    stroke: stroke,
+  }),
+];
+const highLightStyle = [
+  new ol.style.Style({
+    image: new ol.style.Icon({
+      // anchor: [0.5, 0.5],
+      offset: [0, 0],
+      // the real size of your icon
+      size: [512, 512],
+      // the scale factor
+      scale: 0.09,
+      src: "/static/image/marker.png",
+    }),
   }),
 ];
 let datasets = axios
-  .get('/api/centers/')
+  .get("/api/centers/")
   .then(function (response) {
-    console.log(response.data)
-    
+    console.log(response.data);
+
     geojsonObject = GeoJSON.parse(response.data, {
       Point: ["lat", "lon"],
     }); //https://github.com/caseycesari/geojson.js
@@ -105,91 +122,60 @@ let datasets = axios
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Filter
-function resultArea(data){
-  resultArea = document.getElementById('resultArea');
-  resultArea.innerHTML = "";
-
-  result_html = "";
-  data.forEach(function(element){
-    result_html += `<a class="resultCard" href="${element.slug}">
-    <div class="tag">Partner</div>
-    <h5>${element.name}</h5>
-    <h6>${element.address}</h6>
-  </a>`
-  })
-  resultArea.innerHTML = result_html;
-}
-
 function updateMap() {
-  let items = $('#items-dropdown').val();
-  let type = $('#type').val();
-  let pickuponly = $('#pickuponly').prop("checked");
-  
-  console.log(items,type,pickuponly);
-  // Filter
-  axios.get('/api/centers/filter',{
-    params:{
-      items: items,
-      type: type,
-      pickuponly: pickuponly,
-    }
-  }).then(function(response){
-    console.log(response.data);
+  let items = $("#items-dropdown").val();
+  let type = $("#type").val();
+  let pickuponly = $("#pickuponly").prop("checked");
 
-    // Update Result Area
-    resultArea = document.getElementById('resultArea');
-    resultArea.innerHTML = "";
-  
-    result_html = "";
-    response.data.forEach(function(element){
-      result_html += `<a class="resultCard" href="${document.URL}/details/${element.slug}">
+  console.log(items, type, pickuponly);
+  // Filter
+  axios
+    .get("/api/centers/filter", {
+      params: {
+        items: items,
+        type: type,
+        pickuponly: pickuponly,
+      },
+    })
+    .then(function (response) {
+      console.log(response.data);
+
+      // Update Result Area
+      resultArea = document.getElementById("resultArea");
+      resultArea.innerHTML = "";
+
+      result_html = "";
+      response.data.forEach(function (element) {
+        result_html += `<a class="resultCard" href="${document.URL}details/${element.slug}" id=${element.id}>
       <div class="tag">Partner</div>
       <h5>${element.name}</h5>
       <h6>${element.address}</h6>
-    </a>`
+    </a>`;
+      });
+      resultArea.innerHTML = result_html;
+
+      // Update map
+      geojsonObject = GeoJSON.parse(response.data, { Point: ["lat", "lon"] }); //https://github.com/caseycesari/geojson.js
+
+      // console.log(geojsonObject);
+
+      vectorSource = new ol.source.Vector({
+        features: new ol.format.GeoJSON().readFeatures(geojsonObject),
+      });
+      // Set the new source to layer
+      vectorLayer.setSource(vectorSource);
+
+      // Add Hover Point Evemt
+      resultCardOnHoverEvent();
     })
-    resultArea.innerHTML = result_html;
-
-    // Update map
-    geojsonObject = GeoJSON.parse(response.data, {Point: ['lat', 'lon']}); //https://github.com/caseycesari/geojson.js
-
-    // console.log(geojsonObject);
-
-    vectorSource = new ol.source.Vector({
-      features: new ol.format.GeoJSON().readFeatures(geojsonObject),
+    .catch(function (error) {
+      console.log(error);
     });
-    // Set the new source to layer
-    vectorLayer.setSource(vectorSource);
-  }).catch(function (error) {
-    console.log(error);
-  });
 }
 
-$('#filter_btn').on('click', function(evt){
+$("#filter_btn").on("click", function (evt) {
   updateMap();
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Add Form map
@@ -204,7 +190,7 @@ var form_vectorLayer = new ol.layer.Vector({
       size: [512, 512],
       // the scale factor
       scale: 0.07,
-      src: '/static/image/pin.png',
+      src: "/static/image/pin.png",
     }),
   }),
 });
@@ -243,12 +229,13 @@ mapLocation.on("click", function (evt) {
   form_vectorLayer.getSource().clear();
   form_vectorLayer.getSource().addFeature(location);
   var coord = evt.coordinate;
-  var coordDegrees = ol.proj.transform(evt.coordinate, "EPSG:3857", "EPSG:4326");
+  var coordDegrees = ol.proj.transform(
+    evt.coordinate,
+    "EPSG:3857",
+    "EPSG:4326"
+  );
   document.getElementById("long").value = coord[0];
   document.getElementById("lat").value = coord[1];
   document.getElementById("longD").innerText = coordDegrees[0];
   document.getElementById("latD").innerText = coordDegrees[1];
 });
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-// Other
