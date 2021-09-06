@@ -18,6 +18,7 @@ let map = new ol.Map({
 ///////////////////////////////////////////////////
 //  Onclick event
 let selected = null;
+let prevId = 0;
 map.on("click", function (evt) {
   // console.log(evt.coordinate);
   var features = [];
@@ -27,6 +28,7 @@ map.on("click", function (evt) {
 
   // Top most feature
   let feature = features[0];
+  
   if (feature) {
     // Undo the previous feature
     if (selected !== null) {
@@ -40,8 +42,13 @@ map.on("click", function (evt) {
     // HIGH LIGHT THE CARD Here.............
     console.log("Feature ID: ");
     console.log(feature.get("id"));
+
+    if(prevId !== 0){
+      document.getElementById(prevId).classList.remove("activeCenter")
+    }
     
-    $(active_card_id).addClass("active");
+    document.getElementById(active_card_id).classList.add("activeCenter")
+    prevId = active_card_id
   }
 });
 

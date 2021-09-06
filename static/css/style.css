@@ -47,7 +47,7 @@ a{
   cursor: pointer;
   display: block;
 }
-.resultCard:hover{
+.resultCard:hover, .resultCard.activeCenter{
   border-left: 5px solid #1a8d44;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
