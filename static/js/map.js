@@ -49,6 +49,18 @@ map.on("click", function (evt) {
 
     document.getElementById(active_card_id).classList.add("activeCenter");
     prevId = active_card_id;
+
+    // /---------------
+    var resultArea = document.getElementById("resultArea");
+    var position = resultArea.scrollTop;
+    var maxValue = resultArea.scrollHeight - resultArea.clientHeight;
+    var divPosition = document.getElementById(active_card_id).offsetTop;
+    if(divPosition < maxValue){
+      resultArea.scrollTop = divPosition
+    } else {
+      resultArea.scrollTop = maxValue
+    }
+    console.log(position, maxValue, divPosition);
   }
 });
 
@@ -177,14 +189,14 @@ function updateMap() {
       result_html = "";
       response.data.forEach(function (element) {
         result_html += `<a class="resultCard" href="${document.URL}details/${element.slug}" id=${element.id}>`;
-        
-        if(element.partner == true) {
+
+        if (element.partner == true) {
           result_html += `<div class="tag">Partner</div>`;
         }
-        if(element.pickup == true) {
-          result_html += `<div class="tag text-warning">Pickup</div>`;
+        if (element.pickup == true) {
+          result_html += `<div class="tagPickup">Pickup</div>`;
         }
-        result_html +=`<h5>${element.name}</h5>
+        result_html += `<h5>${element.name}</h5>
                         <h6>${element.address}</h6>
                       </a>`;
       });
@@ -208,7 +220,7 @@ function updateMap() {
       console.log(error);
     });
 }
-updateMap(); 
+updateMap();
 $("#filter_btn").on("click", function (evt) {
   updateMap();
 });
