@@ -154,8 +154,9 @@ function updateMap() {
   let items = $("#items-dropdown").val();
   let type = $("#type").val();
   let pickuponly = $("#pickuponly").prop("checked");
+  let partneronly = $("#partneronly").prop("checked");
 
-  console.log(items, type, pickuponly);
+  console.log(items, type, pickuponly, partneronly);
   // Filter
   axios
     .get("/api/centers/filter", {
@@ -163,6 +164,7 @@ function updateMap() {
         items: items,
         type: type,
         pickuponly: pickuponly,
+        partneronly: partneronly,
       },
     })
     .then(function (response) {
@@ -174,11 +176,17 @@ function updateMap() {
 
       result_html = "";
       response.data.forEach(function (element) {
-        result_html += `<a class="resultCard" href="${document.URL}details/${element.slug}" id=${element.id}>
-      <div class="tag">Partner</div>
-      <h5>${element.name}</h5>
-      <h6>${element.address}</h6>
-    </a>`;
+        result_html += `<a class="resultCard" href="${document.URL}details/${element.slug}" id=${element.id}>`;
+        
+        if(element.partner == true) {
+          result_html += `<div class="tag">Partner</div>`;
+        }
+        if(element.pickup == true) {
+          result_html += `<div class="tag text-warning">Pickup</div>`;
+        }
+        result_html +=`<h5>${element.name}</h5>
+                        <h6>${element.address}</h6>
+                      </a>`;
       });
       resultArea.innerHTML = result_html;
 
@@ -200,7 +208,7 @@ function updateMap() {
       console.log(error);
     });
 }
-
+updateMap(); 
 $("#filter_btn").on("click", function (evt) {
   updateMap();
 });

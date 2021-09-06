@@ -94,6 +94,7 @@ def filter_api_centers(request):
     center_items=request.GET.getlist('items[]')
     center_type=request.GET.get('type')
     pickuponly=request.GET.get('pickuponly')
+    partneronly=request.GET.get('partneronly')
     
     # Items centers   
     if(len(center_items) > 0):
@@ -119,6 +120,10 @@ def filter_api_centers(request):
     if(pickuponly != 'false'):
         all_centers = all_centers.filter(pickup=True).distinct()
         print('pickuponly')
+
+    if(partneronly != 'false'):
+        all_centers = all_centers.filter(partner=True).distinct()
+        print('partneronly')
 
     # print(center_items,center_type,pickuponly)
 

@@ -30,7 +30,7 @@
             <option value="Find">Find</option>
           </select>
         </div>
-        <div class="col-md-3 my-2">
+        <div class="col-md-2 my-2">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="1" id="pickuponly" name="pickuponly">
             <label class="form-check-label" for="flexCheckDefault">
@@ -38,7 +38,15 @@
             </label>
           </div>
         </div>
-        <div class="col-md-3 w-md-100">
+        <div class="col-md-2 my-2">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="1" id="partneronly" name="partneronly">
+            <label class="form-check-label" for="flexCheckDefault">
+              Partner Only
+            </label>
+          </div>
+        </div>
+        <div class="col-md-2 w-md-100">
           <button class="btn btn-success" id="filter_btn">Search</button>
         </div>
       </div>
@@ -47,13 +55,7 @@
   <div id="map" class="map">
   </div>
   <div class="resultArea" id="resultArea">
-    {% for center in centers %}
-    <a class="resultCard" href="{% url 'detailsPage' center.slug %}" id="{{center.id}}">
-      <div class="tag">Partner</div>
-      <h5>{{center.name}}</h5>
-      <h6>{{center.address}}</h6>
-    </a>
-    {% endfor %}
+      <!-- Results load -->
   </div>
 </div>
 
