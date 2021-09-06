@@ -105,6 +105,21 @@ let datasets = axios
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Filter
+function resultArea(data){
+  resultArea = document.getElementById('resultArea');
+  resultArea.innerHTML = "";
+
+  result_html = "";
+  data.forEach(function(element){
+    result_html += `<a class="resultCard" href="${element.slug}">
+    <div class="tag">Partner</div>
+    <h5>${element.name}</h5>
+    <h6>${element.address}</h6>
+  </a>`
+  })
+  resultArea.innerHTML = result_html;
+}
+
 function updateMap() {
   let items = $('#items-dropdown').val();
   let type = $('#type').val();
@@ -119,9 +134,26 @@ function updateMap() {
       pickuponly: pickuponly,
     }
   }).then(function(response){
+    console.log(response.data);
+
+    // Update Result Area
+    resultArea = document.getElementById('resultArea');
+    resultArea.innerHTML = "";
+  
+    result_html = "";
+    response.data.forEach(function(element){
+      result_html += `<a class="resultCard" href="${document.URL}/details/${element.slug}">
+      <div class="tag">Partner</div>
+      <h5>${element.name}</h5>
+      <h6>${element.address}</h6>
+    </a>`
+    })
+    resultArea.innerHTML = result_html;
+
+    // Update map
     geojsonObject = GeoJSON.parse(response.data, {Point: ['lat', 'lon']}); //https://github.com/caseycesari/geojson.js
 
-    console.log(geojsonObject);
+    // console.log(geojsonObject);
 
     vectorSource = new ol.source.Vector({
       features: new ol.format.GeoJSON().readFeatures(geojsonObject),
@@ -136,6 +168,28 @@ function updateMap() {
 $('#filter_btn').on('click', function(evt){
   updateMap();
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Add Form map

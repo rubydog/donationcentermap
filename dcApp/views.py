@@ -95,6 +95,32 @@ def filter_api_centers(request):
     center_type=request.GET.get('type')
     pickuponly=request.GET.get('pickuponly')
     
-    print(center_items,center_type,pickuponly)
+    # Items centers   
+    if(len(center_items) > 0):
+        items = Tag.objects.filter(id__in=center_items)
+        all_centers = Center.objects.filter(Q(can_donate__id__in=center_items) | Q(can_find__id__in=center_items)).distinct()
+        print(center_items)
+        print(items)
+        print(all_centers)
+
+
+    if(center_type == "Find"):
+        all_centers = Center.objects.filter(can_find__id__in=center_items).distinct()
+        print("find Items")
+
+    elif(center_type == 'Give'):
+        all_centers = Center.objects.filter(can_donate__id__in=center_items).distinct()
+        print("donate Items")
+    
+    else:
+        print("pass")
+    
+
+    if(pickuponly != 'false'):
+        all_centers = all_centers.filter(pickup=True).distinct()
+        print('pickuponly')
+
+    # print(center_items,center_type,pickuponly)
 
     return JsonResponse(list(all_centers.values()), safe=False)
+

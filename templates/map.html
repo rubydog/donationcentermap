@@ -46,7 +46,7 @@
   </div>
   <div id="map" class="map">
   </div>
-  <div class="resultArea">
+  <div class="resultArea" id="resultArea">
     {% for center in centers %}
     <a class="resultCard" href="{% url 'detailsPage' center.slug %}">
       <div class="tag">Partner</div>
