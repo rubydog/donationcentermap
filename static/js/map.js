@@ -28,7 +28,7 @@ map.on("click", function (evt) {
 
   // Top most feature
   let feature = features[0];
-  
+
   if (feature) {
     // Undo the previous feature
     if (selected !== null) {
@@ -40,15 +40,15 @@ map.on("click", function (evt) {
     selected = feature;
     active_card_id = feature.get("id");
     // HIGH LIGHT THE CARD Here.............
-    console.log("Feature ID: ");
-    console.log(feature.get("id"));
+    // console.log("Feature ID: ");
+    // console.log(feature.get("id"));
 
-    if(prevId !== 0){
-      document.getElementById(prevId).classList.remove("activeCenter")
+    if (prevId !== 0) {
+      document.getElementById(prevId).classList.remove("activeCenter");
     }
-    
-    document.getElementById(active_card_id).classList.add("activeCenter")
-    prevId = active_card_id
+
+    document.getElementById(active_card_id).classList.add("activeCenter");
+    prevId = active_card_id;
   }
 });
 
@@ -60,11 +60,30 @@ function resultCardOnHoverEvent() {
   // Add hover event Listernerner
   resultsCards.forEach(function (e) {
     e.addEventListener("mouseenter", function () {
-      console.log("Feature ID: ");
+      // console.log("Feature ID: ");
       let selectedfeatureID = this.id;
-      console.log(selectedfeatureID);
-      
+      // console.log(selectedfeatureID);
+
+      // Deselect Previous Card
+      if (prevId !== 0) {
+        document.getElementById(prevId).classList.remove("activeCenter");
+      }
       // High Light Points
+      vectorLayer
+        .getSource()
+        .getFeatures()
+        .map(function (feature) {
+          if (feature.get("id") == selectedfeatureID) {
+            // Undo the previous feature
+            if (selected !== null) {
+              selected.setStyle(undefined);
+              selected = null;
+            }
+            //  High Light Feature
+            feature.setStyle(highLightStyle);
+            selected = feature;
+          }
+        });
     });
   });
 }
