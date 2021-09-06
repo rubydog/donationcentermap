@@ -36,10 +36,12 @@ map.on("click", function (evt) {
     //  High Light Feature
     feature.setStyle(highLightStyle);
     selected = feature;
-
+    active_card_id = feature.get("id");
     // HIGH LIGHT THE CARD Here.............
     console.log("Feature ID: ");
     console.log(feature.get("id"));
+    
+    $(active_card_id).addClass("active");
   }
 });
 
@@ -54,7 +56,7 @@ function resultCardOnHoverEvent() {
       console.log("Feature ID: ");
       let selectedfeatureID = this.id;
       console.log(selectedfeatureID);
-
+      
       // High Light Points
     });
   });
