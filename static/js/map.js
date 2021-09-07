@@ -1,6 +1,11 @@
 ////////////////////////////////////////////////////
 // Initiate Map
 // Create a map obj
+let vectorSource;
+let vectorLayer;
+let geojsonObject;
+
+//  Map
 let map = new ol.Map({
   target: "map",
   layers: [
@@ -15,11 +20,13 @@ let map = new ol.Map({
   }),
 });
 
-///////////////////////////////////////////////////
-//  Onclick event
+////// Events /////////////////////////////////////////////
+
+// Map Onclick event
 let selected = null;
 let prevId = 0;
-map.on("click", function (evt) {
+
+map.on("pointermove", function (evt) {
   // console.log(evt.coordinate);
   var features = [];
   map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
@@ -55,16 +62,16 @@ map.on("click", function (evt) {
     var position = resultArea.scrollTop;
     var maxValue = resultArea.scrollHeight - resultArea.clientHeight;
     var divPosition = document.getElementById(active_card_id).offsetTop;
-    if(divPosition < maxValue){
-      resultArea.scrollTop = divPosition
+    if (divPosition < maxValue) {
+      resultArea.scrollTop = divPosition;
     } else {
-      resultArea.scrollTop = maxValue
+      resultArea.scrollTop = maxValue;
     }
     console.log(position, maxValue, divPosition);
   }
 });
 
-// Result Card Event Listners
+// Result Card Event
 function resultCardOnHoverEvent() {
   // Result Hover
   resultsCards = document.querySelectorAll("#resultArea > a");
@@ -99,23 +106,46 @@ function resultCardOnHoverEvent() {
     });
   });
 }
-resultCardOnHoverEvent();
+
+// Load data to Result Area Event
+function loadDataToResultArea(data = []) {
+  resultArea = document.getElementById("resultArea");
+  resultArea.innerHTML = "";
+
+  result_html = "";
+  data.forEach(function (element) {
+    result_html += `<a class="resultCard" href="${document.URL}details/${element.slug}" id=${element.id}>`;
+
+    if (element.partner == true) {
+      result_html += `<div class="tag">Partner</div>`;
+    }
+    if (element.pickup == true) {
+      result_html += `<div class="tagPickup">Pickup</div>`;
+    }
+    result_html += `<h5>${element.name}</h5>
+                    <h6>${element.address}</h6>
+                  </a>`;
+  });
+  resultArea.innerHTML = result_html;
+
+  resultCardOnHoverEvent();
+}
 
 ///////////////////////////////////////////////////////
 // Load data to map
-let vectorSource;
-let vectorLayer;
-let geojsonObject;
 
 const styles = [
   new ol.style.Style({
     image: new ol.style.Icon({
-      // anchor: [0.5, 0.5],
-      offset: [0, 0],
+      anchor: [0.5, 46],
+      anchorXUnits: "fraction",
+      anchorYUnits: "pixels",
+      // offset: [0, 0],
       // the real size of your icon
       size: [512, 512],
       // the scale factor
       scale: 0.07,
+      displacement: [0, 500],
       src: "/static/image/marker.png",
     }),
   }),
@@ -123,20 +153,27 @@ const styles = [
 const highLightStyle = [
   new ol.style.Style({
     image: new ol.style.Icon({
-      // anchor: [0.5, 0.5],
-      offset: [0, 0],
+      anchor: [0.5, 46],
+      anchorXUnits: "fraction",
+      anchorYUnits: "pixels",
       // the real size of your icon
       size: [512, 512],
       // the scale factor
       scale: 0.09,
+      displacement: [0, 500],
       src: "/static/image/marker.png",
     }),
   }),
 ];
-let datasets = axios
+
+//  Init Data
+axios
   .get("/api/centers/")
   .then(function (response) {
     console.log(response.data);
+
+    // Update Result Area
+    loadDataToResultArea(response.data);
 
     geojsonObject = GeoJSON.parse(response.data, {
       Point: ["lat", "lon"],
@@ -183,25 +220,7 @@ function updateMap() {
       console.log(response.data);
 
       // Update Result Area
-      resultArea = document.getElementById("resultArea");
-      resultArea.innerHTML = "";
-
-      result_html = "";
-      response.data.forEach(function (element) {
-        result_html += `<a class="resultCard" href="${document.URL}details/${element.slug}" id=${element.id}>`;
-
-        if (element.partner == true) {
-          result_html += `<div class="tag">Partner</div>`;
-        }
-        if (element.pickup == true) {
-          result_html += `<div class="tagPickup">Pickup</div>`;
-        }
-        result_html += `<h5>${element.name}</h5>
-                        <h6>${element.address}</h6>
-                      </a>`;
-      });
-      resultArea.innerHTML = result_html;
-
+      loadDataToResultArea(response.data);
       // Update map
       geojsonObject = GeoJSON.parse(response.data, { Point: ["lat", "lon"] }); //https://github.com/caseycesari/geojson.js
 
@@ -220,7 +239,8 @@ function updateMap() {
       console.log(error);
     });
 }
-updateMap();
+// updateMap();
+
 $("#filter_btn").on("click", function (evt) {
   updateMap();
 });
