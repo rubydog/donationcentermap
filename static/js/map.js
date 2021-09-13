@@ -137,16 +137,18 @@ function loadDataToResultArea(data = []) {
 const styles = [
   new ol.style.Style({
     image: new ol.style.Icon({
-      anchor: [0.5, 46],
+      anchor: [0.5, 50],
       anchorXUnits: "fraction",
       anchorYUnits: "pixels",
       // offset: [0, 0],
       // the real size of your icon
-      size: [512, 512],
+      // size: [512, 512],
       // the scale factor
-      scale: 0.07,
-      displacement: [0, 500],
-      src: "/static/image/marker.png",
+      scale: 0.2,
+      // displacement: [0, 200],
+      // src: "/static/image/marker.png",
+      src: "/static/image/marker.svg",
+
     }),
   }),
 ];
@@ -157,11 +159,12 @@ const highLightStyle = [
       anchorXUnits: "fraction",
       anchorYUnits: "pixels",
       // the real size of your icon
-      size: [512, 512],
+      // size: [512, 512],
       // the scale factor
-      scale: 0.09,
-      displacement: [0, 500],
-      src: "/static/image/marker.png",
+      scale: 0.25,
+      // displacement: [0, 200],
+      // src: "/static/image/marker.png",
+      src: "/static/image/marker.svg",
     }),
   }),
 ];
