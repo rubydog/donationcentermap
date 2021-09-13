@@ -40,6 +40,27 @@ a{
   right: 0;
   bottom: 0;
 }
+.ol-zoom {
+  top: auto;
+  left: 12px;
+  bottom: 15px;
+}
+.ol-control button{
+  background-color: #1a8d44;
+}
+.geoLocator{
+  position: absolute;
+  z-index: 1;
+  bottom: 80px;
+  left: 15px;
+  width: 26px;
+  height: 26px;
+  background-color: #1a8d44;
+  color: #fff;
+  line-height: 26px;
+  text-align: center;
+  border-radius: 3px;
+}
 .searchArea {
   position: absolute;
   left: 0;
@@ -181,5 +202,11 @@ a{
     left: 0;
     right: 0;
     width: auto;
+  }
+  .geoLocator{
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    bottom: 90px;
   }
 }
