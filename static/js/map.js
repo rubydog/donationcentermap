@@ -20,6 +20,76 @@ let map = new ol.Map({
   }),
 });
 
+//////////////////////////////////////////////////////////
+// Geolocation
+const geolocation = new ol.Geolocation({
+  trackingOptions: {
+    enableHighAccuracy: true,
+  },
+  projection: map.getView().getProjection(),
+});
+
+// ENABLE TRACKING
+geolocation.setTracking(true);
+
+// handle geolocation error.
+geolocation.on("error", function (error) {
+  alert(error.message);
+});
+
+const accuracyFeature = new ol.Feature();
+geolocation.on("change:accuracyGeometry", function () {
+  accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
+});
+
+const positionFeature = new ol.Feature();
+positionFeature.setStyle(
+  new ol.style.Style({
+    image: new ol.style.Circle({
+      radius: 8,
+      fill: new ol.style.Fill({
+        color: "#3399CC",
+      }),
+      stroke: new ol.style.Stroke({
+        color: "#fff",
+        width: 2,
+      }),
+    }),
+  })
+);
+geolocation.on("change:position", function () {
+  const coordinates = geolocation.getPosition();
+  positionFeature.setGeometry(
+    coordinates ? new ol.geom.Point(coordinates) : null
+  );
+});
+
+// Add the vector layer to map
+geolocate_vector_layer = new ol.layer.Vector({
+  source: new ol.source.Vector({
+    features: [accuracyFeature, positionFeature],
+  }),
+  zIndex: 0,
+});
+map.addLayer(geolocate_vector_layer);
+
+////////////////////////////////////////////////////////////
+// Geolocate Fuction
+// Geolocate State
+let geolocateState = true;
+function geolocateUser() {
+  geolocation.setTracking(geolocateState);
+  alert("Tracking "+geolocateState);
+  geolocateState = !geolocateState;
+  map.setView(
+    new ol.View({
+      center: geolocation.getPosition(),
+      zoom: 17,
+      projection: "EPSG:3857",
+    })
+  );
+}
+
 ////// Events /////////////////////////////////////////////
 
 // Map Onclick event
@@ -36,7 +106,7 @@ map.on("pointermove", function (evt) {
   // Top most feature
   let feature = features[0];
 
-  if (feature) {
+  if (feature && feature.get("id")) {
     // Undo the previous feature
     if (selected !== null) {
       selected.setStyle(undefined);
@@ -148,7 +218,6 @@ const styles = [
       // displacement: [0, 200],
       // src: "/static/image/marker.png",
       src: "/static/image/marker.svg",
-
     }),
   }),
 ];
