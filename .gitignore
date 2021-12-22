@@ -1,3 +1,4 @@
 *.pyc
 /dcApp/_pycache_
 
+env/*
