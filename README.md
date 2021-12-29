@@ -22,3 +22,6 @@
 2. Add Center Form 
 3. Admin Panle Center
 4. Show map data on Main map
+
+## super user
+admin : DC@2021
