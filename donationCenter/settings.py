@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'donationcenter',
         'USER': 'postgres',
-        'PASSWORD': 'GiZ#8080',
+        'PASSWORD': 'TgraYv6AMd',
         'HOST': '89.233.108.250',
         'PORT': '5432',
     },
